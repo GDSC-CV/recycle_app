@@ -24,8 +24,10 @@ class _FriendPageState extends State<FriendPage> {
     UserData userData = Provider.of<UserData>(context);
 
     return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: Colors.grey[300],
+      appBar: AppBar(
+        backgroundColor:Color.fromRGBO(31, 64, 92, 1),
+      ),
+      backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: Column(
@@ -71,7 +73,16 @@ class _FriendPageState extends State<FriendPage> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 20),
               child: TextFormField(
-                decoration: inputTextDecoration.copyWith(hintText: 'Your Friend\'s ID'),
+                decoration: InputDecoration(
+                  hintText: 'Your Friend\'s ID',
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                    color: Color.fromRGBO(31, 64, 92, 1),
+                    width: 4,
+                    ),
+                  borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
                 validator: (val) => val!.isEmpty ? 'Please enter a id' : null,
                 onChanged: (val) => setState(() => _friendId = val),
               ),
@@ -79,7 +90,7 @@ class _FriendPageState extends State<FriendPage> {
             const SizedBox(height: 10.0),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Color.fromRGBO(31, 64, 92, 1),
                 foregroundColor: Colors.grey[50],
               ),
               child: const Text(

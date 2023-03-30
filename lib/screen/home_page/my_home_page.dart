@@ -32,6 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor:Color.fromRGBO(31, 64, 92, 1),
         title: Text(widget.title),
       ),
       body: Center(
@@ -45,10 +46,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () async {
                   await Experience.userGainExp(userData, 13);
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromRGBO(31, 64, 92, 1),
+                  foregroundColor: Colors.grey[50],
+                ),
                 child: const Text("gain level"))
           ],
         ),
-      ),
+      ), 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -60,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           );
         },
+        backgroundColor:Color.fromRGBO(31, 64, 92, 1),
         tooltip: 'Take a photo',
         child: const Icon(Icons.camera_alt_rounded),
       ),
@@ -96,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: const Text('Articles Links'),
+              title: const Text('Articles'),
               leading: const Icon(Icons.article),
               onTap: () {
                 Navigator.of(context).push(
@@ -139,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   await _auth.signOut();
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Color.fromRGBO(31, 64, 92, 1),
                   foregroundColor: Colors.grey[50],
                 ),
                 child: const Text('log out'),

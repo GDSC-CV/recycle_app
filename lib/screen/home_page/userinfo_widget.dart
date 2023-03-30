@@ -38,14 +38,19 @@ class _userInfo_widgetState extends State<userInfo_widget> {
       
       children: [
         UserAccountsDrawerHeader(
-          //todo
+          decoration: BoxDecoration(
+            color:Color.fromRGBO(31, 64, 92, 1),
+          ),
+          currentAccountPicture: const CircleAvatar(
+            backgroundColor: Colors.white,
+            backgroundImage:AssetImage('Logo.png'),
+          ),
           accountName: Text(user.name),
           accountEmail: Text(userEmail??" "),
-          currentAccountPicture: const CircleAvatar(
-            child: FlutterLogo(size: 42.0),
-          ),
+          
         ),
         const Text("Current Level:"),
+        
         const SizedBox(height: 20,),
         Text(
           user.level.toString(),
@@ -64,7 +69,7 @@ class _userInfo_widgetState extends State<userInfo_widget> {
           percent: expPersent,
           center: Text((expPersent*100).toString()+"%"),
           linearStrokeCap: LinearStrokeCap.roundAll,
-          progressColor: Colors.greenAccent,
+          progressColor: Color.fromARGB(255, 246, 193, 47),
         ),
         const SizedBox(height: 20,),
       ],

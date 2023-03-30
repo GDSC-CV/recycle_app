@@ -32,7 +32,7 @@ class _SignInState extends State<SignIn> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[600],
       appBar: AppBar(
-        backgroundColor: Colors.grey[800],
+        backgroundColor: Color(0xFF424242),
         title: Text('Sign In'),
         elevation: 0,
         actions: [

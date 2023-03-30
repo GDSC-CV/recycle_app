@@ -23,7 +23,9 @@ class _Setting_pageState extends State<Setting_page> {
     UserData userData = Provider.of<UserData>(context);
     
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor:Color.fromRGBO(31, 64, 92, 1),
+      ),
       backgroundColor: Colors.grey[300],
       body: Form(
         key: _formKey,
@@ -56,7 +58,7 @@ class _Setting_pageState extends State<Setting_page> {
             const SizedBox(height: 10.0),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Color.fromRGBO(31, 64, 92, 1),
                 foregroundColor: Colors.grey[50],
               ),
               child: const Text(
@@ -78,7 +80,7 @@ class _Setting_pageState extends State<Setting_page> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Color.fromRGBO(31, 64, 92, 1),
                 foregroundColor: Colors.grey[50],
               ),
               onPressed: (){

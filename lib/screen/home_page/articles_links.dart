@@ -14,6 +14,7 @@ class Articals_links extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor:Color.fromRGBO(31, 64, 92, 1),
         title: Text('Articles Links'),
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -37,10 +38,11 @@ class Articals_links extends StatelessWidget {
               final title = data['title'] as String;
               final url = data['url'] as String;
 
-              return ListTile(
-                title: Text(title),
-                onTap: () async {
-                  await Experience.userGainExp(userData, 10); // Using userData from Provider
+              
+              return ElevatedButton(
+                child: Text(title),
+                onPressed: () async {
+                  await Experience.userGainExp(userData, 5);
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => WebView(
@@ -50,9 +52,19 @@ class Articals_links extends StatelessWidget {
                     ),
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    side: BorderSide(color: Colors.black),
+                  ),
+                  backgroundColor: Colors.grey[50],
+                  foregroundColor: Colors.black,
+                  minimumSize: Size(200, 60),
+                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),                ),
               );
             },
           );
+
         },
       ),
     );
