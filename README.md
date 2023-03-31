@@ -1,6 +1,6 @@
 # Rethink, Recycle!
 
-This is a recycling app that helps users quickly understand how to properly sort various types of recyclable materials.
+This is a recycling app that helps users quickly understand how to properly identify various types of recyclable materials.
 
 ## Table of Contents
 
