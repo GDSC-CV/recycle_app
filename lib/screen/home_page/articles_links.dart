@@ -14,58 +14,84 @@ class Articals_links extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:Color.fromRGBO(31, 64, 92, 1),
+        backgroundColor: Color.fromRGBO(31, 64, 92, 1),
         title: Text('Articles Links'),
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: _firestore.collection('links').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          }
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: StreamBuilder<QuerySnapshot>(
+          stream: _firestore.collection('links').snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            }
 
-          if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
-          }
+            if (!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            }
 
-          final docs = snapshot.data!.docs;
+            final docs = snapshot.data!.docs;
 
-          return ListView.builder(
-            itemCount: docs.length,
-            itemBuilder: (context, index) {
-              final doc = docs[index];
-              final data = doc.data() as Map<String, dynamic>;
-              final title = data['title'] as String;
-              final url = data['url'] as String;
+            return ListView.builder(
+              padding: EdgeInsets.zero,
+              itemCount: docs.length,
+              itemBuilder: (context, index) {
+                final doc = docs[index];
+                final data = doc.data() as Map<String, dynamic>;
+                final title = data['title'] as String;
+                final content = data['content'] as String;
+                final url = data['url'] as String;
 
-              
-              return ElevatedButton(
-                child: Text(title),
-                onPressed: () async {
-                  await Experience.userGainExp(userData, 5);
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => WebView(
-                        initialUrl: url,
-                        javascriptMode: JavascriptMode.unrestricted,
+                return ElevatedButton(
+                  onPressed: () async {
+                    await Experience.userGainExp(userData, 5);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => WebView(
+                          initialUrl: url,
+                          javascriptMode: JavascriptMode.unrestricted,
+                        ),
                       ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      side: BorderSide(color: Colors.black),
                     ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    side: BorderSide(color: Colors.black),
+                    backgroundColor: Colors.grey[50],
+                    foregroundColor: Colors.black,
+                    minimumSize: Size(200, 60),
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                   ),
-                  backgroundColor: Colors.grey[50],
-                  foregroundColor: Colors.black,
-                  minimumSize: Size(200, 60),
-                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),                ),
-              );
-            },
-          );
-
-        },
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          content,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

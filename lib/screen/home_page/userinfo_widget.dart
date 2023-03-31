@@ -37,6 +37,7 @@ class _userInfo_widgetState extends State<userInfo_widget> {
     return Column(
       
       children: [
+        
         UserAccountsDrawerHeader(
           decoration: BoxDecoration(
             color:Color.fromRGBO(31, 64, 92, 1),
@@ -51,7 +52,7 @@ class _userInfo_widgetState extends State<userInfo_widget> {
         ),
         const Text("Current Level:"),
         
-        const SizedBox(height: 20,),
+        const SizedBox(height: 10,),
         Text(
           user.level.toString(),
           style: const TextStyle(

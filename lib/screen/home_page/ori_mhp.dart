@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:recycle_app/models/myuser.dart';
 import 'package:recycle_app/screen/authenticate/forget_password.dart';
 import 'package:recycle_app/screen/camera/take_picture_screen.dart';
-import 'package:recycle_app/screen/home_page/friend_page.dart';
+import 'package:recycle_app/screen/home_page/3friend_page.dart';
 import 'package:recycle_app/screen/home_page/setting_page.dart';
 import 'package:recycle_app/screen/home_page/userinfo_widget.dart';
 import 'package:recycle_app/service/auth.dart';
@@ -150,5 +150,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-}
-*/
+}*/

@@ -5,6 +5,8 @@ import 'package:recycle_app/models/myuser.dart';
 import 'package:recycle_app/service/database.dart';
 import 'package:recycle_app/tools/constants.dart';
 import 'package:recycle_app/tools/friend_system.dart';
+import 'package:recycle_app/screen/home_page/userinfo_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FriendPage extends StatefulWidget {
   const FriendPage({super.key});
@@ -24,8 +26,25 @@ class _FriendPageState extends State<FriendPage> {
     UserData userData = Provider.of<UserData>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor:Color.fromRGBO(31, 64, 92, 1),
+      appBar: PreferredSize(
+        preferredSize:
+            Size.fromHeight(MediaQuery.of(context).size.height * 0.07),
+        child: AppBar(
+          backgroundColor:Color.fromRGBO(31, 64, 92, 1),
+          automaticallyImplyLeading: false,
+          title: Text(
+            'Settings',
+            style: GoogleFonts.roboto(
+              textStyle: TextStyle(
+                color: Colors.white, 
+                fontSize: 22,
+              ),
+            
+            ),
+          ),
+          centerTitle: true,
+          elevation: 2,
+        ),
       ),
       backgroundColor: Colors.white,
       body: Form(
@@ -34,7 +53,7 @@ class _FriendPageState extends State<FriendPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            
+            const userInfo_widget(),
             const SizedBox(height: 30,),
             const Text(
               "Your ID",
