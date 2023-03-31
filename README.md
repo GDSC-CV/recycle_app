@@ -10,7 +10,7 @@ This is a recycling app that helps users quickly understand how to properly sort
 
 ## Features
 
-Rethink, Recycle! includes the following features:
+**Rethink, Recycle!** includes the following features:
 
 - **Recyclings Recognition:** Users can take a photo of recyclings by their deviece's camera, and the app will classify the recyclable materials by OpenCV image processing and deep learning database.
 - **Related Articles:** We provides daily articles about sustainable living, empowering users to learn about ways to lessen their impact on the environment.
@@ -25,7 +25,7 @@ Rethink, Recycle! includes the following features:
 
 - **Flutter:** Flutter was used to build the mobile app interface.
 - **Firebase:** Firebase Authentication and Cloud Firestore were used for handling user authentication and data storage.
-- **Firebase Cloud Messaging:** Firebase Cloud Messaging was used to send push notifications to users who haven't logged in on that day.
+- **Firebase Cloud Messaging:** Firebase Cloud Messaging was used to send push notifications to users.
 - **OpenCV:** OpenCV was used for image processing and object recognition, to classify the recyclings from user photos.
 - **Deep Learning:** Deep learning models were used to train the image recognition algorithm for classifying the recyclings.
 - **Kaggle:** Kaggle is a website which we collected recycling images for machine learning from.
