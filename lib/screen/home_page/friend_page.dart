@@ -68,7 +68,7 @@ class _FriendWidgetState extends State<FriendWidget> {
                   Expanded(
                     child: Container(
                       width: 100,
-                      height: 93.4,
+                      height: 20,
                       decoration: BoxDecoration(
                         color: Colors.white,
                       ),
@@ -176,7 +176,7 @@ class _FriendWidgetState extends State<FriendWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0,15, 15, 0),
                         child: Container(
                           width: 100,
-                          height: 67.8,
+                          height: 10,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [

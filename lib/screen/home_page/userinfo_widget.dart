@@ -60,7 +60,7 @@ class _userInfo_widgetState extends State<userInfo_widget> {
           ),
 
         ),
-        const SizedBox(height: 20,),
+        const SizedBox(height: 10,),
         LinearPercentIndicator(
           alignment: MainAxisAlignment.center,
           width: 250.0,

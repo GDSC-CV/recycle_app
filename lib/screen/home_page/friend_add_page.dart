@@ -26,6 +26,26 @@ class _FriendAddWidgetState extends State<FriendAddWidget>{
     UserData userData = Provider.of<UserData>(context);
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize:
+            Size.fromHeight(MediaQuery.of(context).size.height * 0.07),
+        child: AppBar(
+          backgroundColor:Color.fromRGBO(31, 64, 92, 1),
+          automaticallyImplyLeading: false,
+          title: Text(
+            'Add Friends',
+            style: GoogleFonts.roboto(
+              textStyle: TextStyle(
+                color: Colors.white, 
+                fontSize: 22,
+              ),
+            
+            ),
+          ),
+          centerTitle: true,
+          elevation: 2,
+        ),
+      ),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(),
@@ -61,23 +81,15 @@ class _FriendAddWidgetState extends State<FriendAddWidget>{
                                         color: Colors.white,
                                       ),
                                       alignment: AlignmentDirectional(0, -1),
-                                      child: GradientText(
-                                        'Friends',
-                                        textAlign: TextAlign.center,
-                                        style: GoogleFonts.getFont(
-                                          'Playfair Display',
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 60,
-                                        ),
-                                        colors: [
-                                          Color(0xFF6420AB),
-                                          Color(0xFF3CDAC7)
-                                        ],
-                                        gradientDirection:
-                                            GradientDirection.ltr,
-                                        gradientType: GradientType.linear,
+                                      child: Text(
+                                      'Your ID',
+                                      style: TextStyle(
+                                        fontSize: 36,
+                                        color: Colors.black,
+	                                      fontFamily: 'Lato',
                                       ),
+
+                                    ),
                                     ),
                                   ),
                                   Divider(

@@ -95,13 +95,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
                           width: double.infinity,
-                          height: 100,
+                          height: 110,
                           decoration: BoxDecoration(
                             color: Colors.transparent,
                           ),
@@ -139,6 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 'Recycling is an essential activity that helps us reduce waste and protect the environment.',
                                style: TextStyle(
                                 color: Colors.white,
+                                fontSize: 18,
                                 fontFamily: 'Lato',
                               ),
                               ),
@@ -153,11 +154,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           child: Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
                             child: Text(
-                              'Our app is designed to make recycling easier and more accessible by helping you identify the different types of waste and showing you how to recycle them properly. \n\n\nNow you may take a picture of your waste  and let this app tell you what that is!',
+                              'Our app is designed to make recycling easier and more accessible by helping you identify the different types of waste and showing you how to recycle them properly. \n\nNow you may take a picture of your waste  and let this app tell you what that is!',
                               style: TextStyle(
                                 color: Colors.white,
+                                fontSize: 18,
                                 fontFamily: 'Lato',
                               ),
                             ),
@@ -211,7 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     color: Colors.transparent,
                                   ),
                                   child: Text(
-                                    'Tap here',
+                                    'Camera',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Colors.white,
@@ -265,7 +267,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     color: Colors.transparent,
                                   ),
                                   child: Text(
-                                    'Tap here',
+                                    'Drive / Photos',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Colors.white,
