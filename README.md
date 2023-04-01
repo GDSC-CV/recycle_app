@@ -30,7 +30,7 @@ This is a recycling app that helps users quickly understand how to properly iden
 - **Deep Learning:** Deep learning models were used to train the image recognition algorithm for classifying the recyclings.
 - **Kaggle:** Kaggle is a website which we collected recycling images for machine learning from.
 
-## Getting Strted
+## Getting Started
 
 To get started with **Rethink, Recycle!**, follow these steps:
 
