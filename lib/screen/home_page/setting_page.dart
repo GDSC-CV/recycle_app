@@ -13,6 +13,7 @@ import 'package:recycle_app/screen/home_page/my_home_page.dart';
 import 'package:recycle_app/screen/home_page/change_password.dart';
 import 'package:recycle_app/screen/authenticate/forget_password.dart';
 import 'package:recycle_app/service/auth.dart';
+import 'package:recycle_app/screen/home_page/sdf.dart';
 
 
 
@@ -103,7 +104,7 @@ class _Setting_pageState extends State<Setting_page> {
                                           MaterialPageRoute(
                                             builder: (BuildContext context) => Provider(
                                               create: (context) => userData,
-                                              builder: (context, child) => const Change_password(),
+                                              builder: (context, child) => const ChangeName_page(),
                                             ),
                                           ),
                                           

@@ -19,7 +19,7 @@ class DisplayPictureScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor:Color.fromRGBO(31, 64, 92, 1),
-        title: const Text('Display the Picture')
+        title: const Text('Results')
       ),
       // The image is stored as a file on the device. Use the `Image.file`
       // constructor with the given path to display the image.
