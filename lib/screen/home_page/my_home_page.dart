@@ -12,6 +12,14 @@ import 'package:recycle_app/service/auth.dart';
 import 'package:recycle_app/service/database.dart';
 import 'package:recycle_app/screen/camera/take_picture_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/material.dart';
+import 'package:recycle_app/models/myuser.dart';
+import 'package:recycle_app/screen/camera/display_picture_screen.dart';
+import 'package:recycle_app/service/classifier.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:recycle_app/tools/experience_system.dart';
+import 'package:image/image.dart' as img;
+
 
 //import '/flutter_flow/flutter_flow_icon_button.dart';
 //import '/flutter_flow/flutter_flow_theme.dart';
@@ -23,6 +31,7 @@ import 'package:provider/provider.dart';
 import 'package:recycle_app/screen/home_page/articles_links.dart';
 
 import 'package:recycle_app/tools/experience_system.dart';
+import 'package:recycle_app/tools/friend_system.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -34,6 +43,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final AuthService _auth = AuthService();
+  late ClassifierService _classifier;
+  late Future _initializeClassifierFuture;
+  final ImagePicker _picker = ImagePicker();
+
+  @override
+  void initState() {
+    super.initState();
+    _classifier = ClassifierService();
+    _initializeClassifierFuture = _classifier.initialize();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,14 +118,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                   fontFamily: 'Roboto Condensed',
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.underline,
+                                  //decoration: TextDecoration.underline,
                                 ),
                               ),
                             ),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                           child: Container(
                             width: double.infinity,
                             height: 80,
@@ -134,9 +153,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           child: Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                                EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                             child: Text(
-                              'Our app is designed to make recycling easier and more accessible by helping you identify the different types of waste and showing you how to recycle them properly. \n\n\n\nNow you may take a picture of your waste  and let this app tell you what that is!',
+                              'Our app is designed to make recycling easier and more accessible by helping you identify the different types of waste and showing you how to recycle them properly. \n\n\nNow you may take a picture of your waste  and let this app tell you what that is!',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'Lato',
@@ -145,36 +164,124 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                        
-                        FloatingActionButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (BuildContext context) => Provider(
-                                  create: (context) => userData,
-                                  builder: (context, child) => TakePictureScreen(),
+                      Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                FloatingActionButton(
+                                  onPressed: () async {
+                                    try {
+                                      await _initializeClassifierFuture;
+
+                                      final XFile? image = await _picker.pickImage(
+                                        source: ImageSource.camera,
+                                      );
+
+                                      var imageBytes = await image!.readAsBytes();
+                                      img.Image imageInput = img.decodeImage(imageBytes)!;
+                                      var pred = _classifier.predict(imageInput);
+                                      if (pred.label != "Other" && pred.score > 0.8)
+                                        await Experience.userGainExp(userData, 13);
+
+                                      if (!mounted) return;
+
+                                      await Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => DisplayPictureScreen(
+                                            imagePath: image.path,
+                                            category: pred,
+                                          ),
+                                        ),
+                                      );
+                                    } catch (e) {
+                                      print(e);
+                                    }
+                                  },
+                                  backgroundColor: Color.fromRGBO(31, 64, 92, 1),
+                                  tooltip: 'Take a photo',
+                                  child: const Icon(Icons.camera_alt_rounded),
                                 ),
-                              ),
-                            );
-                          },
-                          backgroundColor: Color.fromRGBO(31, 64, 92, 1),
-                          tooltip: 'Take a photo',
-                          child: const Icon(Icons.camera_alt_rounded),
-                        ),
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                          ),
-                          child: Text(
-                            'Tap here',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Lato',
-                              ),
+                                Container(
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                  ),
+                                  child: Text(
+                                    'Tap here',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Lato',
+                                      ),
+                                    ),
+                                ),
+
+                              ],
                             ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                               FloatingActionButton(
+                                  onPressed: () async {
+                                      try {
+                                        await _initializeClassifierFuture;
+
+                                        final XFile? image = await _picker.pickImage(
+                                          source: ImageSource.gallery,
+                                        );
+
+                                        var imageBytes = await image!.readAsBytes();
+                                        img.Image imageInput = img.decodeImage(imageBytes)!;
+                                        var pred = _classifier.predict(imageInput);
+                                        if (pred.label != "Other" && pred.score > 0.8)
+                                          await Experience.userGainExp(userData, 13);
+
+                                        if (!mounted) return;
+
+                                        await Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) => DisplayPictureScreen(
+                                              imagePath: image.path,
+                                              category: pred,
+                                            ),
+                                          ),
+                                        );
+                                      } catch (e) {
+                                        print(e);
+                                      }
+                                    },
+                                  backgroundColor: Color.fromRGBO(31, 64, 92, 1),
+                                  tooltip: 'Take a photo',
+                                  child: const Icon(Icons.photo),
+                                ),
+                                Container(
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                  ),
+                                  child: Text(
+                                    'Tap here',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Lato',
+                                      ),
+                                    ),
+                                ),
+
+                              ],
+                            ),
+                          ],
                         ),
+                    
+
+
+                        
                       ],
                     ),
                   ),
@@ -223,7 +330,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 MaterialPageRoute(
                                   builder: (BuildContext context) => Provider(
                                     create: (context) => userData,
-                                    builder: (context, child) => const FriendPage(),
+                                    builder: (context, child) => const FriendWidget(),
                                   ),
                                 ),
                               );

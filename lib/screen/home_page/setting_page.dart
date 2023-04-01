@@ -312,7 +312,7 @@ class _Setting_pageState extends State<Setting_page> {
                                 MaterialPageRoute(
                                   builder: (BuildContext context) => Provider(
                                     create: (context) => userData,
-                                    builder: (context, child) => const FriendPage(),
+                                    builder: (context, child) => const FriendWidget(),
                                   ),
                                 ),
                               );
