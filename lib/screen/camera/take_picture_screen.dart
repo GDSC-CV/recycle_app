@@ -37,7 +37,10 @@ class TakePictureScreenState extends State<TakePictureScreen> {
     UserData userData = Provider.of<UserData>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Take a picture')),
+      appBar: AppBar(
+        backgroundColor:Color.fromRGBO(31, 64, 92, 1),
+        title: const Text('Take a picture')
+        ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -83,6 +86,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
               },
               heroTag: 'image0',
               tooltip: 'Pick Image from gallery',
+              backgroundColor:Color.fromRGBO(31, 64, 92, 1),
               child: const Icon(Icons.photo),
             ),
           ),
@@ -119,6 +123,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
               },
               heroTag: 'image1',
               tooltip: 'Take a Photo',
+              backgroundColor:Color.fromRGBO(31, 64, 92, 1),
               child: const Icon(Icons.camera_alt),
             ),
           ),
