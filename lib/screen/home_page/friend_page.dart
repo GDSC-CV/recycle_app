@@ -21,6 +21,11 @@ class FriendWidget extends StatefulWidget {
 }
 
 class _FriendWidgetState extends State<FriendWidget> {
+  
+  final _formKey = GlobalKey<FormState>();
+  String _friendId = "";
+  bool refresh = false;
+  
   @override
   Widget build(BuildContext context) {
     UserData userData = Provider.of<UserData>(context);
